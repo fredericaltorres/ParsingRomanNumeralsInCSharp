@@ -1,9 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.InteropServices;
-
 
 namespace RomanNumerals
 {
@@ -11,19 +7,23 @@ namespace RomanNumerals
 
         public string Expression;
         public int Value;
+
         internal ParsingRule(string expression, int value)
         {
             this.Expression = expression;
             this.Value = value;
         }
-        public int GetExpressionLen()
+
+        private int GetExpressionLen()
         {
             return this.Expression.Length;
         }
+
         public string GetNextExpression(string expression)
         {
             return expression.Substring(this.GetExpressionLen());
         }
+
         public bool ApplyToExpression(string romanExpression)
         {
             return romanExpression.StartsWith(this.Expression);
@@ -108,9 +108,9 @@ namespace RomanNumerals
             return this.ThrowInvalidNumeralException(romanExpression);
         }
 
-	    private int ThrowInvalidNumeralException(string roman)
-	    {
-		    throw new Exception("Invalid Roman Numeral String: " + roman);
-	    }
+        private int ThrowInvalidNumeralException(string roman)
+        {
+            throw new Exception("Invalid Roman Numeral String: " + roman);
+        }
     }
 }
