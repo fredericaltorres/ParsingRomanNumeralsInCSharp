@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 namespace RomanNumerals
 {
     internal class ParsingRule {
+
         public string Expression;
         public int Value;
         internal ParsingRule(string expression, int value)
@@ -28,6 +29,7 @@ namespace RomanNumerals
             return romanExpression.StartsWith(this.Expression);
         }        
     }
+
     internal class ParsingRules : List<ParsingRule>
     {
         public ParsingRules Add(string expression, int value)
@@ -81,9 +83,7 @@ namespace RomanNumerals
             if(string.IsNullOrEmpty(romanExpr))
                 return this.ThrowInvalidNumeralException(romanExpr);
 
-            romanExpr = romanExpr.ToUpperInvariant();
-
-            return InternalEval(romanExpr);
+            return InternalEval(romanExpr.ToUpperInvariant());
         }
 
         /// <summary>
@@ -100,6 +100,7 @@ namespace RomanNumerals
                 return 0;
 
             // Find the first rule that apply to the current expression
+            // Execute the rule and recursively move to the next part of the expression
             foreach(var rule in _parsingRules)
                 if (rule.ApplyToExpression(romanExpression))
                     return rule.Value + this.InternalEval(rule.GetNextExpression(romanExpression));

@@ -14,9 +14,7 @@ namespace RomanNumerals
             if(string.IsNullOrEmpty(romanExpr))
                 return this.ThrowInvalidNumeralException(romanExpr);
 
-            romanExpr = romanExpr.ToUpperInvariant();
-
-            return InternalToInt(romanExpr);
+            return InternalToInt(romanExpr.ToUpperInvariant());
         }
 
         /// <summary>
