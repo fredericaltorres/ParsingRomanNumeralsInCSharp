@@ -11,6 +11,7 @@ I wrote a rule engine that starting
 Grab the expected expression, convert into numeric and recursively
 continue to evaluate the expression.
 
-See class RomanNumerals.Parser_V1.cs for my first implementation
-with no refactoring
+See class 
+- RomanNumerals.Parser_V1.cs for my first implementation with no refactoring
+- RomanNumerals.Parser_V2.cs with concept of rules applied to parse the expression
 
