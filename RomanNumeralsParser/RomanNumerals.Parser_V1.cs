@@ -19,9 +19,17 @@ namespace RomanNumerals
             return InternalToInt(romanExpr);
         }
 
+        /// <summary>
+        /// This function is called recusively to parse a piece of the 
+        /// expression, first the 1000, then the 100, then the 10 and finally the
+        /// less than 10.
+        /// </summary>
+        /// <param name="romanExpr"></param>
+        /// <returns></returns>
         private int InternalToInt(string romanExpr)
         {
-            if (string.IsNullOrEmpty(romanExpr)) // Expression evaluated with success
+            // Expression evaluated with success, backtrack
+            if (string.IsNullOrEmpty(romanExpr))
                 return 0;
 
             // Evaluation in the exact right order is key

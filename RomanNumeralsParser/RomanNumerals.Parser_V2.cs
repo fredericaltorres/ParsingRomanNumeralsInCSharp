@@ -19,6 +19,14 @@ namespace RomanNumerals
         {
             return this.Expression.Length;
         }
+        public string GetNextExpression(string expression)
+        {
+            return expression.Substring(this.GetExpressionLen());
+        }
+        public bool ApplyToExpression(string romanExpression)
+        {
+            return romanExpression.StartsWith(this.Expression);
+        }        
     }
     internal class ParsingRules : List<ParsingRule>
     {
@@ -78,16 +86,25 @@ namespace RomanNumerals
             return InternalEval(romanExpr);
         }
 
-        private int InternalEval(string romanExpr)
+        /// <summary>
+        /// This function is called recusively to parse a piece of the 
+        /// expression, first the 1000, then the 100, then the 10 and finally the
+        /// less than 10.
+        /// </summary>
+        /// <param name="romanExpression"></param>
+        /// <returns></returns>
+        private int InternalEval(string romanExpression)
         {
-            if (string.IsNullOrEmpty(romanExpr)) // Expression evaluated with success
+            // Expression evaluated with success, backtrack
+            if (string.IsNullOrEmpty(romanExpression)) 
                 return 0;
 
+            // Find the first rule that apply to the current expression
             foreach(var rule in _parsingRules)
-                if (romanExpr.StartsWith(rule.Expression))
-                    return rule.Value + this.InternalEval(romanExpr.Substring(rule.GetExpressionLen()));
+                if (rule.ApplyToExpression(romanExpression))
+                    return rule.Value + this.InternalEval(rule.GetNextExpression(romanExpression));
 
-            return this.ThrowInvalidNumeralException(romanExpr);
+            return this.ThrowInvalidNumeralException(romanExpression);
         }
 
 	    private int ThrowInvalidNumeralException(string roman)
