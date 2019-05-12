@@ -9,9 +9,9 @@ namespace RomanNumerals
     {
         IParser _parser = null;
 
-	    [SetUp]
-	    public void SetUp()
-	    {
+        [SetUp]
+        public void SetUp()
+        {
             _parser = new RomanNumerals.Parser_V2();
         }
 
@@ -47,11 +47,10 @@ namespace RomanNumerals
         [TestCase("I", 1)]
         public void Parse_Thousand_Hundred_Ten(string numeralString, int expected)
         {
-	        var result = _parser.Eval(numeralString);
+            var result = _parser.Eval(numeralString);
 
-	        Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, result);
         }
-
 
         [TestCase("MMMM", 4000)]
         [TestCase("MMMCMXII", 3912)]

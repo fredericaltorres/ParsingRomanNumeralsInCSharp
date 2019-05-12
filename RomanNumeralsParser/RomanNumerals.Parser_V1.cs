@@ -101,9 +101,9 @@ namespace RomanNumerals
             return this.ThrowInvalidNumeralException(romanExpr);
         }
 
-	    public int ThrowInvalidNumeralException(string roman)
-	    {
-		    throw new Exception("Invalid Roman Numeral String: " + roman);
-	    }
+        public int ThrowInvalidNumeralException(string roman)
+        {
+            throw new Exception("Invalid Roman Numeral String: " + roman);
+        }
     }
 }
