@@ -45,7 +45,7 @@ namespace RomanNumerals
         [TestCase("I", 1)]
         public void Parse_Thousand_Hundred_Ten(string numeralString, int expected)
         {
-	        var converter = new RomanNumerals.Parser();
+	        var converter = new RomanNumerals.Parser_V1();
 
 	        var result = converter.ToInt(numeralString);
 
@@ -87,7 +87,7 @@ namespace RomanNumerals
         [TestCase("I", 1)]
         public void Parse_Numbers(string numeralString, int expected)
         {
-            var converter = new RomanNumerals.Parser();
+            var converter = new RomanNumerals.Parser_V1();
 
             var result = converter.ToInt(numeralString);
 

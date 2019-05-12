@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace RomanNumerals
 {
-    public class Parser
+    public class Parser_V1
     {
         public int ToInt(string roman)
         {
