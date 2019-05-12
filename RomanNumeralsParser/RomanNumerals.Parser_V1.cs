@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 
 namespace RomanNumerals
 {
-    public class Parser_V1
+    public class Parser_V1 : IParser
     {
-        public int ToInt(string romanExpr)
+        public int Eval(string romanExpr)
         {
             if(string.IsNullOrEmpty(romanExpr))
                 return this.ThrowInvalidNumeralException(romanExpr);
@@ -18,6 +18,7 @@ namespace RomanNumerals
 
             return InternalToInt(romanExpr);
         }
+
         private int InternalToInt(string romanExpr)
         {
             if (string.IsNullOrEmpty(romanExpr)) // Expression evaluated with success
@@ -26,7 +27,7 @@ namespace RomanNumerals
             // Evaluation in the exact right order is key
 
             if (romanExpr.StartsWith("MMMM")) // 4000
-                return 4000 + this.InternalToInt(romanExpr.Substring(3));
+                return 4000 + this.InternalToInt(romanExpr.Substring(4));
             else if (romanExpr.StartsWith("MMM")) // 3000
                 return 3000 + this.InternalToInt(romanExpr.Substring(3));
             else if (romanExpr.StartsWith("MM"))  // 2000

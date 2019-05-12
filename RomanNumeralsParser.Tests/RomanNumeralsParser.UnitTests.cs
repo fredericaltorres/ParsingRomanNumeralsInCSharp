@@ -7,11 +7,13 @@ namespace RomanNumerals
     [TestFixture]
     public class RomanNumeralsParser_UnitTests
     {
+        IParser _parser = null;
+
 	    [SetUp]
 	    public void SetUp()
 	    {
-
-	    }
+            _parser = new RomanNumerals.Parser_V2();
+        }
 
         [TestCase("MMM", 3000)]
         [TestCase("MM", 2000)]
@@ -45,27 +47,32 @@ namespace RomanNumerals
         [TestCase("I", 1)]
         public void Parse_Thousand_Hundred_Ten(string numeralString, int expected)
         {
-	        var converter = new RomanNumerals.Parser_V1();
+	        var result = _parser.Eval(numeralString);
 
-	        var result = converter.ToInt(numeralString);
-
-	        Assert.AreEqual(result, expected);
+	        Assert.AreEqual(expected, result);
         }
 
-        [TestCase("MMMI", 3001)]
-        [TestCase("MMMXII", 3012)]
-        [TestCase("MMMCXXIII", 3123)]
+
+        [TestCase("MMMM", 4000)]
         [TestCase("MMMCMXII", 3912)]
         [TestCase("MMMDCCCLXVII", 3867)]
+        [TestCase("MMMDCCLXXVII", 3777)]
         [TestCase("MMMDCLXVI", 3666)]
         [TestCase("MMMDLV", 3555)]
         [TestCase("MMMCDXLIV", 3444)]
         [TestCase("MMMCCCXXXIII", 3333)]
         [TestCase("MMMCCXXII", 3222)]
+        [TestCase("MMMCXXIII", 3123)]
         [TestCase("MMMCXI", 3111)]
+        [TestCase("MMMXII", 3012)]
+        [TestCase("MMM", 3000)]
 
+        [TestCase("MMCMXCIX", 2999)]
+        [TestCase("MMDCCCLXXXVIII", 2888)]
+        [TestCase("MMDCCLXXVII", 2777)]
+        [TestCase("MMDCLXVI", 2666)]
         [TestCase("MMDLV", 2555)]
-
+        [TestCase("MMCDXLIV", 2444)]
 
         [TestCase("MM", 2000)]
         [TestCase("M", 1000)]
@@ -98,11 +105,9 @@ namespace RomanNumerals
         [TestCase("I", 1)]
         public void Parse_Numbers(string numeralString, int expected)
         {
-            var converter = new RomanNumerals.Parser_V1();
+            var result = _parser.Eval(numeralString);
 
-            var result = converter.ToInt(numeralString);
-
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestCase("BAD-EXPRESSION", 0)]
@@ -115,13 +120,12 @@ namespace RomanNumerals
         //[TestCase("MCIIIX", 1103)]
         public void ParseInvalidExpressions(string numeralString, int expected)
         {
-            var converter = new RomanNumerals.Parser_V1();
             Assert.Throws<Exception>(() =>
-                converter.ToInt(numeralString)
+                _parser.Eval(numeralString)
             );
         }
-
     }
 }
+
 
 
