@@ -16,6 +16,8 @@ namespace RomanNumerals
 
             roman = roman.ToUpperInvariant();
 
+            // Evaluation in the exact right order is key
+
             if (roman.StartsWith("MMMM")) // 4000
                 return 4000 + this.ToInt(roman.Substring(3));
             else if (roman.StartsWith("MMM")) // 3000

@@ -55,7 +55,18 @@ namespace RomanNumerals
         [TestCase("MMMI", 3001)]
         [TestCase("MMMXII", 3012)]
         [TestCase("MMMCXXIII", 3123)]
-        
+        [TestCase("MMMCMXII", 3912)]
+        [TestCase("MMMDCCCLXVII", 3867)]
+        [TestCase("MMMDCLXVI", 3666)]
+        [TestCase("MMMDLV", 3555)]
+        [TestCase("MMMCDXLIV", 3444)]
+        [TestCase("MMMCCCXXXIII", 3333)]
+        [TestCase("MMMCCXXII", 3222)]
+        [TestCase("MMMCXI", 3111)]
+
+        [TestCase("MMDLV", 2555)]
+
+
         [TestCase("MM", 2000)]
         [TestCase("M", 1000)]
         [TestCase("CM", 900)]
@@ -94,5 +105,19 @@ namespace RomanNumerals
             Assert.AreEqual(result, expected);
         }
 
+        [TestCase("MCIIV", 0)]
+        [TestCase("MCIIIV", 0)]
+        [TestCase("MCIIIIV", 0)]
+        [TestCase("MCIIX", 1103)]
+        [TestCase("MCIIIX", 1103)]
+        public void ParseInvalidExpressions(string numeralString, int expected)
+        {
+            var converter = new RomanNumerals.Parser_V1();
+            Assert.Throws<Exception>(() =>
+                converter.ToInt(numeralString)
+            );
+        }
+
     }
 }
+

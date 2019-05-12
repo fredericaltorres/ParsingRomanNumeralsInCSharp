@@ -4,9 +4,9 @@
 Starting with the wikipedia page
 [Roman numerals](https://en.wikipedia.org/wiki/Roman_numerals)
 
-I wrote a rule engine that Starting
+I wrote a rule engine that starting
 - from left to right
-- from 1000, then 100, then 10, the less than 10
+- from 1000, then 100, then 10, then less than 10
 
 Grab the expected expression, convert into numeric and recursively
 continue to evaluate the expression.
